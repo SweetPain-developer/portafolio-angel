@@ -1,0 +1,275 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import profilePhoto from '../../img/Angel-Lillo-caricatura.jpeg';
+import { profileEn, contactsEn, highlightsEn, projectsEn, techEn, focusEn } from '../../data/portfolio-en';
+---
+
+<BaseLayout title="Ángel Lillo | Backend Engineer" description={profileEn.summary}>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a href="/en/" class="brand">Ángel Lillo</a>
+      <nav>
+        <a href="#experience">Experience</a>
+        <a href="#stack">Stack</a>
+        <a href="#contact">Contact</a>
+        <a href="/" class="lang-switch" aria-label="Cambiar a Español">ES</a>
+        <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle color mode">🌙</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero card elevated">
+      <div class="hero-content">
+        <p class="eyebrow">Backend Engineer · AWS Serverless · Cloud & Data</p>
+        <h1>{profileEn.name}</h1>
+        <p class="role">{profileEn.role}</p>
+        <p>{profileEn.summary}</p>
+        <div class="hero-metrics" aria-label="Primary areas">
+          <span>Critical systems</span>
+          <span>Event-driven architecture</span>
+          <span>Cloud & Data</span>
+        </div>
+        <div class="hero-proof">
+          <div>
+            <strong>Backend</strong>
+            <span>Node.js, AWS Lambda, APIs, enterprise integration</span>
+          </div>
+          <div>
+            <strong>Architecture</strong>
+            <span>Step Functions, event-driven systems, resilience</span>
+          </div>
+          <div>
+            <strong>Delivery</strong>
+            <span>QA, production incidents, continuous improvement</span>
+          </div>
+        </div>
+        <div class="actions">
+          <a href="#contact" class="btn primary">Let's talk</a>
+          <a href="#experience" class="btn">View case studies</a>
+          <a href="/CV-Angel-Lillo-HUMAN-EN.pdf" class="btn" download>Professional CV</a>
+          <a href="/CV-Angel-Lillo-ATS-EN.pdf" class="btn" download>ATS CV</a>
+        </div>
+      </div>
+      <div class="hero-photo-wrap">
+        <div class="hero-photo-frame">
+          <img src={profilePhoto.src} alt="Ángel Lillo profile picture" class="hero-photo" width="280" height="280" loading="eager" />
+          <div class="hero-aside-card">
+            <span class="hero-aside-label">Currently focused on</span>
+            <strong>High-criticality serverless backend systems</strong>
+            <p>Technical design, enterprise integration, and cloud operations with reliability at the center.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card elevated">
+      <span class="section-kicker">Results</span>
+      <h2>Production impact already demonstrated</h2>
+      <ul class="highlight-list">
+        {highlightsEn.map((item) => <li>{item}</li>)}
+      </ul>
+    </section>
+
+    <section id="experience" class="card elevated">
+      <div class="section-head">
+        <div>
+          <span class="section-kicker">Highlighted experience</span>
+          <h2>Where backend, cloud, and delivery meet</h2>
+        </div>
+        <div class="carousel-controls" aria-label="Carousel controls">
+          <button class="carousel-btn" id="prev-project" type="button" aria-label="Previous experience">←</button>
+          <button class="carousel-btn" id="next-project" type="button" aria-label="Next experience">→</button>
+        </div>
+      </div>
+      <div class="carousel-status">
+        <div class="carousel-dots" id="carousel-dots" aria-label="Experience indicators"></div>
+        <span class="carousel-counter" id="carousel-counter">01 / 01</span>
+      </div>
+
+      <div class="carousel-track" id="projects-carousel" role="region" aria-live="polite">
+        {projectsEn.map((project, i) => (
+          <article class={`project-slide ${i === 0 ? 'is-active' : ''}`}>
+            <h3>{project.name}</h3>
+            <p>{project.context}</p>
+
+            <h4>Responsibilities</h4>
+            <ul>
+              {project.responsibilities.map((item) => <li>{item}</li>)}
+            </ul>
+
+            {project.results.length > 0 && (
+              <>
+                <h4>Outcomes</h4>
+                <ul>
+                  {project.results.map((item) => <li>{item}</li>)}
+                </ul>
+              </>
+            )}
+
+            {project.links && project.links.length > 0 && (
+              <>
+                <h4>Links</h4>
+                <div class="actions">
+                  {project.links.map((link) => (
+                    <a href={link.url} target="_blank" rel="noopener noreferrer" class="btn">{link.label || 'View project'}</a>
+                  ))}
+                </div>
+              </>
+            )}
+
+            <h4>Tech stack used</h4>
+            <div class="chips">
+              {project.stack.map((item) => <span class="chip">{item}</span>)}
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section id="stack" class="grid cols-2">
+      <article class="card elevated">
+        <span class="section-kicker">Stack</span>
+        <h2>Core stack</h2>
+        <div class="chips">
+          {techEn.core.map((item) => <span class="chip">{item}</span>)}
+        </div>
+      </article>
+      <article class="card elevated">
+        <span class="section-kicker">Complementary</span>
+        <h2>Tools and supporting layers</h2>
+        <div class="chips">
+          {techEn.complementary.map((item) => <span class="chip">{item}</span>)}
+        </div>
+      </article>
+    </section>
+
+    <section class="card elevated">
+      <span class="section-kicker">Current focus</span>
+      <h2>Areas where I deliver the most value today</h2>
+      <ul>
+        {focusEn.map((item) => <li>{item}</li>)}
+      </ul>
+    </section>
+
+    <section id="contact" class="card elevated contact-card">
+      <span class="section-kicker">Contact</span>
+      <h2>Direct channels to connect or coordinate</h2>
+      <div class="contact-icons-grid">
+        <a class="contact-icon-link" href={contactsEn.linkedin} target="_blank" rel="noopener noreferrer" aria-label="Open Ángel Lillo LinkedIn">
+          <span class="contact-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z" />
+              <rect x="2" y="9" width="4" height="12" />
+              <circle cx="4" cy="4" r="2" />
+            </svg>
+          </span>
+          <span class="contact-icon-label">LinkedIn</span>
+        </a>
+        <a class="contact-icon-link" href={contactsEn.github} target="_blank" rel="noopener noreferrer" aria-label="Open Ángel Lillo GitHub">
+          <span class="contact-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 6v-3.5a3 3 0 0 0-.9-2.3c3-.3 6.2-1.5 6.2-6.9A5.4 5.4 0 0 0 19 5.6 5 5 0 0 0 18.9 2S17.7 1.7 15 3.5a13 13 0 0 0-6 0C6.3 1.7 5.1 2 5.1 2A5 5 0 0 0 5 5.6 5.4 5.4 0 0 0 3.7 9.3c0 5.4 3.2 6.6 6.2 6.9A3 3 0 0 0 9 18.5V22" />
+            </svg>
+          </span>
+          <span class="contact-icon-label">GitHub</span>
+        </a>
+        <a class="contact-icon-link" href={`mailto:${contactsEn.emails[0]}`} aria-label="Send corporate email to Ángel Lillo">
+          <span class="contact-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z" />
+              <path d="m22 6-10 7L2 6" />
+            </svg>
+          </span>
+          <span class="contact-icon-label">Corporate email</span>
+        </a>
+        <a class="contact-icon-link" href={`mailto:${contactsEn.emails[1]}`} aria-label="Send personal email to Ángel Lillo">
+          <span class="contact-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z" />
+              <path d="m22 6-10 7L2 6" />
+            </svg>
+          </span>
+          <span class="contact-icon-label">Personal email</span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const key = 'angel-theme';
+    const root = document.documentElement;
+    const toggleBtn = document.getElementById('theme-toggle');
+
+    const savedTheme = localStorage.getItem(key);
+    if (savedTheme === 'light') root.dataset.theme = 'light';
+
+    const refreshThemeIcon = () => {
+      if (!toggleBtn) return;
+      const isLight = root.dataset.theme === 'light';
+      toggleBtn.textContent = isLight ? '🌞' : '🌙';
+    };
+
+    refreshThemeIcon();
+
+    toggleBtn?.addEventListener('click', () => {
+      const next = root.dataset.theme === 'light' ? 'dark' : 'light';
+      if (next === 'light') root.dataset.theme = 'light';
+      else delete root.dataset.theme;
+      localStorage.setItem(key, next);
+      refreshThemeIcon();
+    });
+
+    const slides = Array.from(document.querySelectorAll('.project-slide'));
+    const prevBtn = document.getElementById('prev-project');
+    const nextBtn = document.getElementById('next-project');
+    const dotsWrap = document.getElementById('carousel-dots');
+    const counter = document.getElementById('carousel-counter');
+    let index = 0;
+
+    const dots = slides.map((_, i) => {
+      const dot = document.createElement('button');
+      dot.type = 'button';
+      dot.className = 'carousel-dot';
+      dot.setAttribute('aria-label', `Go to experience ${i + 1}`);
+      dot.addEventListener('click', () => {
+        index = i;
+        renderSlide();
+      });
+      dotsWrap?.appendChild(dot);
+      return dot;
+    });
+
+    const renderSlide = () => {
+      slides.forEach((slide, i) => {
+        slide.classList.toggle('is-active', i === index);
+      });
+      dots.forEach((dot, i) => {
+        const isActive = i === index;
+        dot.classList.toggle('is-active', isActive);
+        dot.setAttribute('aria-pressed', String(isActive));
+      });
+      if (counter) {
+        counter.textContent = `${String(index + 1).padStart(2, '0')} / ${String(slides.length).padStart(2, '0')}`;
+      }
+    };
+
+    prevBtn?.addEventListener('click', () => {
+      index = (index - 1 + slides.length) % slides.length;
+      renderSlide();
+    });
+
+    nextBtn?.addEventListener('click', () => {
+      index = (index + 1) % slides.length;
+      renderSlide();
+    });
+
+    if (slides.length > 0) {
+      renderSlide();
+      setInterval(() => {
+        index = (index + 1) % slides.length;
+        renderSlide();
+      }, 7000);
+    }
+  </script>
+</BaseLayout>
