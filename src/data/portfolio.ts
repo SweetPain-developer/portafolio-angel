@@ -1,8 +1,8 @@
 export const profile = {
   name: 'Ángel Lillo',
-  role: 'Backend Engineer · Arquitectura Serverless en AWS · Cloud & Data',
+  role: 'Backend Engineer · Node.js · AWS Serverless · Integraciones PRD',
   summary:
-    'Ingeniero en Informática especializado en backend y arquitecturas serverless sobre AWS para sistemas críticos. Combino diseño técnico, implementación y operación productiva para construir soluciones resilientes, escalables y mantenibles, incorporando aprendizaje continuo en IA aplicada al desarrollo.',
+    'Ingeniero en Informática especializado en backend con Node.js y arquitectura serverless sobre AWS para proyectos productivos de alta criticidad. Participo en diseño técnico, implementación, soporte productivo e integración con sistemas corporativos como SAP y AS400. Complemento este trabajo con experiencia en Flutter, componentes de datos en AWS y uso práctico de IA aplicada al desarrollo.',
 };
 
 export const contacts = {
@@ -16,24 +16,25 @@ export const highlights = [
   'Diseño de flujos complejos con AWS Step Functions',
   'Modelamiento avanzado y remediación de inconsistencias en DynamoDB',
   'Integración de sistemas corporativos con SAP y AS400',
-  'Aprendizaje continuo en IA aplicada al desarrollo y automatización técnica',
+  'Uso práctico de IA aplicada al desarrollo para análisis técnico y automatización asistida',
 ];
 
 export const projects = [
   {
     name: 'COPEC FFAA',
-    context: 'Sistema de alta escala para gestión de información crítica.',
+    context: 'Sistema de gestión de información crítica en un entorno productivo de alta exigencia operativa.',
     responsibilities: [
-      'Backend con Node.js en arquitectura serverless.',
+      'Desarrollo backend con Node.js en arquitectura serverless.',
       'Orquestación de procesos con AWS Step Functions.',
-      'Implementación de AWS Lambda con manejo robusto de errores y reintentos.',
-      'Integración con SAP (eventos, batch, RFC/IDoc/API) y AS400.',
-      'Resiliencia con SQS + DLQ.',
+      'Implementación de AWS Lambda con manejo de errores y reintentos.',
+      'Integración con SAP y AS400 para flujos corporativos.',
+      'Resiliencia con SQS + DLQ para desacople y recuperación de fallos.',
       'Modelamiento y corrección de inconsistencias en DynamoDB.',
+      'Participación en QA, estimaciones y mejora de calidad de código.',
     ],
     results: [
-      'Resolución de incidentes productivos críticos.',
-      'Mejora de calidad de código con SonarQube.',
+      'Participación directa en la resolución de incidentes críticos en producción.',
+      'Aporte a la confiabilidad y mantenibilidad de flujos backend.',
       'Participación transversal en QA, estimaciones y diseño técnico.',
     ],
     stack: ['Node.js', 'AWS Lambda', 'Step Functions', 'SQS / DLQ', 'DynamoDB', 'SAP', 'AS400', 'SonarQube'],
@@ -43,13 +44,16 @@ export const projects = [
   },
   {
     name: 'RVA (Red Virtual de Alimentos)',
-    context: 'Aplicación móvil y consumo de APIs.',
+    context: 'Aplicación móvil conectada a APIs para habilitar flujos funcionales de usuario.',
     responsibilities: [
       'Desarrollo móvil con Flutter.',
       'Integración de APIs REST.',
       'Implementación de interfaces y flujos funcionales.',
     ],
-    results: [],
+    results: [
+      'Participación en la construcción funcional de la aplicación móvil.',
+      'Experiencia práctica en integración cliente-backend mediante APIs.',
+    ],
     stack: ['Flutter', 'Dart', 'REST APIs'],
     links: [
       { label: 'RVA Android', url: 'https://play.google.com/store/apps/details?id=com.Red_Virtual_Alimento&hl=es_CL' },
@@ -58,7 +62,7 @@ export const projects = [
   },
   {
     name: 'Subproyecto Data Warehouse',
-    context: 'Diseño e implementación de componentes de analítica de datos en AWS.',
+    context: 'Implementación de componentes de analítica de datos en AWS para disponibilidad y consulta de información.',
     responsibilities: [
       'Diseño de arquitectura de datos.',
       'ETL con AWS Glue.',
@@ -66,7 +70,10 @@ export const projects = [
       'Consultas analíticas con Athena.',
       'Resolución de problemas de visualización y disponibilidad de datos.',
     ],
-    results: [],
+    results: [
+      'Participación en la habilitación de flujos de datos para análisis.',
+      'Apoyo en la disponibilidad y consulta de información en entornos AWS.',
+    ],
     stack: ['AWS Glue', 'Athena', 'S3', 'ETL', 'Data Catalog'],
     links: [],
   },
@@ -75,18 +82,20 @@ export const projects = [
 export const tech = {
   core: [
     'Node.js',
-    'C#',
     'AWS Lambda',
     'AWS Step Functions',
     'Amazon SQS',
     'DynamoDB',
-    'S3',
     'Serverless Architecture',
     'Event-Driven Design',
-    'AWS Glue',
-    'Athena',
+    'SAP',
+    'AS400',
   ],
   complementary: [
+    'C#',
+    'S3',
+    'AWS Glue',
+    'Athena',
     'PostgreSQL',
     'Oracle (SQL / PL-SQL)',
     'Angular',
@@ -106,7 +115,7 @@ export const focus = [
   'Arquitectura de software escalable',
   'Sistemas distribuidos',
   'Serverless avanzado en AWS',
-  'Ingeniería de datos',
+  'Integraciones empresariales y operación productiva',
   'Calidad de software y madurez QA',
-  'Aprendizaje y adopción práctica de IA para desarrollo',
+  'Uso práctico de IA aplicada al desarrollo',
 ];
