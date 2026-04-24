@@ -6,9 +6,17 @@ import { profile, contacts, highlights, projects, tech, focus } from '../data/po
 
 <BaseLayout title="Ángel Lillo | Backend Engineer" description={profile.summary}>
   <header class="topbar">
-    <div class="topbar-inner">
-      <a href="#" class="brand">Ángel Lillo</a>
+    <div class="topbar-inner shell">
+      <a href="#inicio" class="brand brand-mark">
+        <span class="brand-badge">AL</span>
+        <span>
+          <strong>Ángel Lillo</strong>
+          <small>Backend Engineer</small>
+        </span>
+      </a>
       <nav>
+        <a href="#inicio">Inicio</a>
+        <a href="#perfil">Perfil</a>
         <a href="#experiencia">Experiencia</a>
         <a href="#stack">Stack</a>
         <a href="#contacto">Contacto</a>
@@ -18,181 +26,210 @@ import { profile, contacts, highlights, projects, tech, focus } from '../data/po
     </div>
   </header>
 
-  <main class="container">
-    <section class="hero card elevated">
-      <div class="hero-content">
-        <p class="eyebrow">Backend Engineer · AWS Serverless · Cloud & Data</p>
-        <h1>{profile.name}</h1>
-        <p class="role">{profile.role}</p>
-        <p>{profile.summary}</p>
+  <main class="page-shell">
+    <section id="inicio" class="hero-panel frame-panel">
+      <aside class="hero-rail" aria-label="Navegación visual de portada">
+        <span class="hero-index">01</span>
+        <span class="hero-line"></span>
+        <span class="hero-dots">
+          <i></i><i></i><i></i>
+        </span>
+      </aside>
+
+      <div class="hero-copy">
+        <p class="eyebrow">Hola, soy</p>
+        <h1 class="hero-title">
+          <span>{profile.name.split(' ')[0]}</span>
+          <span class="accent">{profile.name.split(' ').slice(1).join(' ')}</span>
+        </h1>
+        <p class="hero-role">{profile.role}</p>
+        <p class="hero-summary">{profile.summary}</p>
+
         <div class="hero-metrics" aria-label="Áreas principales">
           <span>Sistemas críticos</span>
-          <span>Arquitectura event-driven</span>
-          <span>Cloud & Data</span>
+          <span>Arquitectura serverless</span>
+          <span>Cloud &amp; Data</span>
         </div>
-        <div class="hero-proof">
-          <div>
-            <strong>Backend</strong>
-            <span>Node.js, AWS Lambda, APIs, integración</span>
-          </div>
-          <div>
-            <strong>Arquitectura</strong>
-            <span>Step Functions, eventos, resiliencia</span>
-          </div>
-          <div>
-            <strong>Entrega</strong>
-            <span>QA, incidentes críticos, mejora continua</span>
-          </div>
-        </div>
-        <div class="actions">
-          <a href="#contacto" class="btn primary">Hablemos</a>
-          <a href="#experiencia" class="btn">Ver casos</a>
+
+        <div class="actions hero-actions">
+          <a href="#experiencia" class="btn primary">Ver experiencia</a>
           <a href="/CV-Angel-Lillo-HUMAN-ES.pdf" class="btn" download>CV Profesional</a>
           <a href="/CV-Angel-Lillo-ATS-ES.pdf" class="btn" download>CV ATS</a>
         </div>
       </div>
-      <div class="hero-photo-wrap">
-        <div class="hero-photo-frame">
-          <img src={profilePhoto.src} alt="Foto de perfil de Ángel Lillo" class="hero-photo" width="280" height="280" loading="eager" />
-          <div class="hero-aside-card">
-            <span class="hero-aside-label">Actualmente enfocado en</span>
-            <strong>Serverless backend de alta criticidad</strong>
-            <p>Diseño técnico, integración empresarial y operaciones cloud con foco en confiabilidad.</p>
+
+      <div class="hero-visual">
+        <div class="hero-visual-frame">
+          <div class="hero-code-card" aria-hidden="true">
+            <span>const profile = {'{'}</span>
+            <span>role: 'Backend Engineer',</span>
+            <span>focus: 'Serverless · Cloud · Data',</span>
+            <span>approach: 'Responsabilidad técnica',</span>
+            <span>{'}'};</span>
+          </div>
+          <img src={profilePhoto.src} alt="Foto de perfil de Ángel Lillo" class="hero-photo" width="420" height="520" loading="eager" />
+        </div>
+      </div>
+    </section>
+
+    <section id="perfil" class="section-block split-block">
+      <article class="side-card frame-panel">
+        <span class="section-number">02</span>
+        <div>
+          <span class="section-kicker">Perfil</span>
+          <h2>Sobre mí</h2>
+        </div>
+      </article>
+
+      <article class="content-card frame-panel">
+        <span class="section-kicker">Resumen profesional</span>
+        <h2>Responsabilidad técnica con foco en claridad, resiliencia y operación real</h2>
+        <p>{profile.summary}</p>
+
+        <div class="responsibility-grid">
+          <div class="responsibility-card">
+            <strong>Responsable de</strong>
+            <p>Diseño técnico, implementación y operación productiva en backend y AWS.</p>
+          </div>
+          <div class="responsibility-card">
+            <strong>Especialización</strong>
+            <p>Arquitecturas serverless, integración empresarial, datos y mejora continua.</p>
           </div>
         </div>
-      </div>
+
+        <div class="content-subsection">
+          <span class="section-kicker">Tecnologías</span>
+          <div class="tech-groups">
+            <div>
+              <h3>Core</h3>
+              <div class="chips">
+                {tech.core.map((item) => <span class="chip">{item}</span>)}
+              </div>
+            </div>
+            <div>
+              <h3>Complementario</h3>
+              <div class="chips">
+                {tech.complementary.map((item) => <span class="chip">{item}</span>)}
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
     </section>
 
-    <section class="card elevated">
-      <span class="section-kicker">Resultados</span>
-      <h2>Impacto que ya está probado en producción</h2>
-      <ul class="highlight-list">
-        {highlights.map((item) => <li>{item}</li>)}
-      </ul>
-    </section>
-
-    <section id="experiencia" class="card elevated">
-      <div class="section-head">
+    <section class="section-block split-block highlights-block">
+      <article class="side-card frame-panel compact-side">
+        <span class="section-number">03</span>
         <div>
-          <span class="section-kicker">Experiencia destacada</span>
-          <h2>Casos donde backend, cloud y operación convergen</h2>
+          <span class="section-kicker">Fortalezas</span>
+          <h2>Áreas donde ya existe impacto comprobado</h2>
         </div>
-        <div class="carousel-controls" aria-label="Controles del carrusel">
-          <button class="carousel-btn" id="prev-project" type="button" aria-label="Experiencia anterior">←</button>
-          <button class="carousel-btn" id="next-project" type="button" aria-label="Siguiente experiencia">→</button>
+      </article>
+      <article class="content-card frame-panel">
+        <ul class="highlight-grid">
+          {highlights.map((item) => <li>{item}</li>)}
+        </ul>
+      </article>
+    </section>
+
+    <section id="experiencia" class="section-block">
+      <div class="section-headline">
+        <span class="section-number inline">04</span>
+        <div>
+          <span class="section-kicker">Experiencia</span>
+          <h2>Responsabilidades y contexto de trabajo</h2>
         </div>
       </div>
-      <div class="carousel-status">
-        <div class="carousel-dots" id="carousel-dots" aria-label="Indicadores de experiencia"></div>
-        <span class="carousel-counter" id="carousel-counter">01 / 01</span>
-      </div>
 
-      <div class="carousel-track" id="projects-carousel" role="region" aria-live="polite">
-        {projects.map((project, i) => (
-          <article class={`project-slide ${i === 0 ? 'is-active' : ''}`}>
-            <h3>{project.name}</h3>
-            <p>{project.context}</p>
+      <div class="project-grid">
+        {projects.map((project) => (
+          <article class="project-card frame-panel">
+            <div class="project-header">
+              <div>
+                <h3>{project.name}</h3>
+                <p class="project-context">{project.context}</p>
+              </div>
+            </div>
 
-            <h4>Responsabilidades</h4>
-            <ul>
-              {project.responsibilities.map((item) => <li>{item}</li>)}
-            </ul>
+            <div class="project-section">
+              <h4>Responsable de</h4>
+              <ul>
+                {project.responsibilities.map((item) => <li>{item}</li>)}
+              </ul>
+            </div>
 
             {project.results.length > 0 && (
-              <>
-                <h4>Resultados</h4>
+              <div class="project-section">
+                <h4>Participación e impacto</h4>
                 <ul>
                   {project.results.map((item) => <li>{item}</li>)}
                 </ul>
-              </>
+              </div>
             )}
+
+            <div class="project-section">
+              <h4>Stack involucrado</h4>
+              <div class="chips">
+                {project.stack.map((item) => <span class="chip">{item}</span>)}
+              </div>
+            </div>
 
             {project.links && project.links.length > 0 && (
-              <>
-                <h4>Enlaces</h4>
-                <div class="actions">
-                  {project.links.map((link) => (
-                    <a href={link.url} target="_blank" rel="noopener noreferrer" class="btn">{link.label || 'Ver proyecto'}</a>
-                  ))}
-                </div>
-              </>
+              <div class="actions project-actions">
+                {project.links.map((link) => (
+                  <a href={link.url} target="_blank" rel="noopener noreferrer" class="btn">{link.label || 'Ver proyecto'}</a>
+                ))}
+              </div>
             )}
-
-            <h4>Stack utilizado</h4>
-            <div class="chips">
-              {project.stack.map((item) => <span class="chip">{item}</span>)}
-            </div>
           </article>
         ))}
       </div>
     </section>
 
-    <section id="stack" class="grid cols-2">
-      <article class="card elevated">
-        <span class="section-kicker">Stack</span>
-        <h2>Stack core</h2>
-        <div class="chips">
-          {tech.core.map((item) => <span class="chip">{item}</span>)}
+    <section id="stack" class="section-block split-block focus-block">
+      <article class="side-card frame-panel compact-side">
+        <span class="section-number">05</span>
+        <div>
+          <span class="section-kicker">Enfoque</span>
+          <h2>Frentes donde hoy aporto más valor</h2>
         </div>
       </article>
-      <article class="card elevated">
-        <span class="section-kicker">Complementario</span>
-        <h2>Herramientas y soporte</h2>
-        <div class="chips">
-          {tech.complementary.map((item) => <span class="chip">{item}</span>)}
-        </div>
+      <article class="content-card frame-panel">
+        <ul class="focus-list">
+          {focus.map((item) => <li>{item}</li>)}
+        </ul>
       </article>
     </section>
 
-    <section class="card elevated">
-      <span class="section-kicker">Enfoque actual</span>
-      <h2>Líneas donde hoy aporto más valor</h2>
-      <ul>
-        {focus.map((item) => <li>{item}</li>)}
-      </ul>
-    </section>
+    <section id="contacto" class="section-block split-block contact-block">
+      <article class="side-card frame-panel compact-side">
+        <span class="section-number">06</span>
+        <div>
+          <span class="section-kicker">Contacto</span>
+          <h2>Canales directos</h2>
+        </div>
+      </article>
 
-    <section id="contacto" class="card elevated contact-card">
-      <span class="section-kicker">Contacto</span>
-      <h2>Canales directos para conversar o coordinar</h2>
-      <div class="contact-icons-grid">
-        <a class="contact-icon-link" href={contacts.linkedin} target="_blank" rel="noopener noreferrer" aria-label="Abrir LinkedIn de Ángel Lillo">
-          <span class="contact-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z" />
-              <rect x="2" y="9" width="4" height="12" />
-              <circle cx="4" cy="4" r="2" />
-            </svg>
-          </span>
-          <span class="contact-icon-label">LinkedIn</span>
-        </a>
-        <a class="contact-icon-link" href={contacts.github} target="_blank" rel="noopener noreferrer" aria-label="Abrir GitHub de Ángel Lillo">
-          <span class="contact-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 6v-3.5a3 3 0 0 0-.9-2.3c3-.3 6.2-1.5 6.2-6.9A5.4 5.4 0 0 0 19 5.6 5 5 0 0 0 18.9 2S17.7 1.7 15 3.5a13 13 0 0 0-6 0C6.3 1.7 5.1 2 5.1 2A5 5 0 0 0 5 5.6 5.4 5.4 0 0 0 3.7 9.3c0 5.4 3.2 6.6 6.2 6.9A3 3 0 0 0 9 18.5V22" />
-            </svg>
-          </span>
-          <span class="contact-icon-label">GitHub</span>
-        </a>
-        <a class="contact-icon-link" href={`mailto:${contacts.emails[0]}`} aria-label="Enviar email corporativo a Ángel Lillo">
-          <span class="contact-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z" />
-              <path d="m22 6-10 7L2 6" />
-            </svg>
-          </span>
-          <span class="contact-icon-label">Email corporativo</span>
-        </a>
-        <a class="contact-icon-link" href={`mailto:${contacts.emails[1]}`} aria-label="Enviar email personal a Ángel Lillo">
-          <span class="contact-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z" />
-              <path d="m22 6-10 7L2 6" />
-            </svg>
-          </span>
-          <span class="contact-icon-label">Email personal</span>
-        </a>
-      </div>
+      <article class="content-card frame-panel contact-layout">
+        <div>
+          <span class="section-kicker">Hablemos</span>
+          <h2>Canales disponibles para conversar o coordinar</h2>
+          <div class="contact-list">
+            <a href={contacts.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a href={contacts.github} target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a href={`mailto:${contacts.emails[0]}`}>{contacts.emails[0]}</a>
+            <a href={`mailto:${contacts.emails[1]}`}>{contacts.emails[1]}</a>
+          </div>
+        </div>
+
+        <div class="contact-code-card">
+          <span>const developer = {'{'}</span>
+          <span>name: '{profile.name}',</span>
+          <span>focus: '{profile.role}',</span>
+          <span>approach: 'Responsable de diseño, implementación y operación'</span>
+          <span>{'}'};</span>
+        </div>
+      </article>
     </section>
   </main>
 
@@ -219,57 +256,5 @@ import { profile, contacts, highlights, projects, tech, focus } from '../data/po
       localStorage.setItem(key, next);
       refreshThemeIcon();
     });
-
-    const slides = Array.from(document.querySelectorAll('.project-slide'));
-    const prevBtn = document.getElementById('prev-project');
-    const nextBtn = document.getElementById('next-project');
-    const dotsWrap = document.getElementById('carousel-dots');
-    const counter = document.getElementById('carousel-counter');
-    let index = 0;
-
-    const dots = slides.map((_, i) => {
-      const dot = document.createElement('button');
-      dot.type = 'button';
-      dot.className = 'carousel-dot';
-      dot.setAttribute('aria-label', `Ir a experiencia ${i + 1}`);
-      dot.addEventListener('click', () => {
-        index = i;
-        renderSlide();
-      });
-      dotsWrap?.appendChild(dot);
-      return dot;
-    });
-
-    const renderSlide = () => {
-      slides.forEach((slide, i) => {
-        slide.classList.toggle('is-active', i === index);
-      });
-      dots.forEach((dot, i) => {
-        const isActive = i === index;
-        dot.classList.toggle('is-active', isActive);
-        dot.setAttribute('aria-pressed', String(isActive));
-      });
-      if (counter) {
-        counter.textContent = `${String(index + 1).padStart(2, '0')} / ${String(slides.length).padStart(2, '0')}`;
-      }
-    };
-
-    prevBtn?.addEventListener('click', () => {
-      index = (index - 1 + slides.length) % slides.length;
-      renderSlide();
-    });
-
-    nextBtn?.addEventListener('click', () => {
-      index = (index + 1) % slides.length;
-      renderSlide();
-    });
-
-    if (slides.length > 0) {
-      renderSlide();
-      setInterval(() => {
-        index = (index + 1) % slides.length;
-        renderSlide();
-      }, 7000);
-    }
   </script>
 </BaseLayout>
