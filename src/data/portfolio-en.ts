@@ -8,6 +8,7 @@ export const profileEn = {
 export const contactsEn = {
   linkedin: 'https://cl.linkedin.com/in/angel-lillo-003833369',
   github: 'https://github.com/SweetPain-developer',
+  whatsapp: 'https://wa.me/56935246795?countryName=CL&countryCode=56&phoneNumber=935246795',
   emails: ['angel@innobyte.cl', 'Angel.lillo.bustos@gmail.com'],
 };
 
