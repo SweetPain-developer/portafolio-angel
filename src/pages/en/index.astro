@@ -1,10 +1,21 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import ThemeAndNavScript from '../../components/ThemeAndNavScript.astro';
 import profilePhoto from '../../img/Angel-Lillo-caricatura.jpeg';
 import { profileEn, contactsEn, highlightsEn, projectsEn, techEn, focusEn } from '../../data/portfolio-en';
 ---
 
-<BaseLayout title="Ángel Lillo | Backend Engineer" description={profileEn.summary}>
+<BaseLayout
+  title="Ángel Lillo | Backend Engineer"
+  description={profileEn.summary}
+  lang="en"
+  canonicalPath="/en/"
+  alternateLocales={[
+    { lang: 'es', path: '/' },
+    { lang: 'en', path: '/en/' },
+    { lang: 'x-default', path: '/' },
+  ]}
+>
   <header class="topbar">
     <div class="topbar-inner shell">
       <a href="#home" class="brand brand-mark">
@@ -38,7 +49,7 @@ import { profileEn, contactsEn, highlightsEn, projectsEn, techEn, focusEn } from
     </div>
   </header>
 
-  <main class="page-shell">
+  <main id="main-content" class="page-shell">
     <section id="home" class="hero-panel frame-panel">
       <aside class="hero-rail" aria-label="Visual hero navigation">
         <span class="hero-index">01</span>
@@ -65,8 +76,8 @@ import { profileEn, contactsEn, highlightsEn, projectsEn, techEn, focusEn } from
 
         <div class="actions hero-actions">
           <a href="#experience" class="btn primary">View experience</a>
-          <a href="/CV-Angel-Lillo-HUMAN-EN.pdf" class="btn" download>Professional CV</a>
-          <a href="/CV-Angel-Lillo-ATS-EN.pdf" class="btn" download>ATS CV</a>
+          <a href="/CV-Angel-Lillo-HUMAN-EN.pdf" class="btn secondary" download>Professional CV</a>
+          <a href="/CV-Angel-Lillo-ATS-EN.pdf" class="btn tertiary" download>ATS CV</a>
         </div>
       </div>
 
@@ -246,63 +257,5 @@ import { profileEn, contactsEn, highlightsEn, projectsEn, techEn, focusEn } from
     </section>
   </main>
 
-  <script>
-    const key = 'angel-theme';
-    const root = document.documentElement;
-    const toggleBtn = document.getElementById('theme-toggle');
-    const menuToggle = document.getElementById('menu-toggle');
-    const siteNav = document.getElementById('site-nav');
-    const mobileQuery = window.matchMedia('(max-width: 820px)');
-
-    const savedTheme = localStorage.getItem(key);
-    if (savedTheme === 'light') root.dataset.theme = 'light';
-
-    const refreshThemeIcon = () => {
-      if (!toggleBtn) return;
-      const isLight = root.dataset.theme === 'light';
-      toggleBtn.textContent = isLight ? '🌞' : '🌙';
-    };
-
-    refreshThemeIcon();
-
-    toggleBtn?.addEventListener('click', () => {
-      const next = root.dataset.theme === 'light' ? 'dark' : 'light';
-      if (next === 'light') root.dataset.theme = 'light';
-      else delete root.dataset.theme;
-      localStorage.setItem(key, next);
-      refreshThemeIcon();
-    });
-
-    const syncMobileNav = () => {
-      if (!menuToggle || !siteNav) return;
-
-      const isMobile = mobileQuery.matches;
-      if (!isMobile) {
-        siteNav.removeAttribute('hidden');
-        menuToggle.setAttribute('aria-expanded', 'false');
-        return;
-      }
-
-      const isOpen = menuToggle.getAttribute('aria-expanded') === 'true';
-      siteNav.toggleAttribute('hidden', !isOpen);
-    };
-
-    menuToggle?.addEventListener('click', () => {
-      if (!siteNav) return;
-      const isOpen = menuToggle.getAttribute('aria-expanded') === 'true';
-      menuToggle.setAttribute('aria-expanded', String(!isOpen));
-      siteNav.toggleAttribute('hidden', isOpen);
-    });
-
-    siteNav?.querySelectorAll('a').forEach((link) => {
-      link.addEventListener('click', () => {
-        if (!mobileQuery.matches || !menuToggle || !siteNav) return;
-        menuToggle.setAttribute('aria-expanded', 'false');
-        siteNav.setAttribute('hidden', '');
-      });
-    });
-
-    mobileQuery.addEventListener('change', syncMobileNav);
-    syncMobileNav();
-  </script>
+  <ThemeAndNavScript />
 </BaseLayout>

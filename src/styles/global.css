@@ -3,6 +3,7 @@
   --bg-soft: #0a1120;
   --surface: #0d1629;
   --surface-2: #111d35;
+  --bg-deep: #040914;
   --text: #f2f6ff;
   --muted: #9caaca;
   --primary: #1f6fff;
@@ -18,6 +19,7 @@
   --bg-soft: #ffffff;
   --surface: #ffffff;
   --surface-2: #f8fbff;
+  --bg-deep: #dfe8f7;
   --text: #0f1b35;
   --muted: #52617f;
   --primary: #1b63e7;
@@ -38,12 +40,38 @@ body {
   background:
     radial-gradient(900px 500px at 100% 0%, rgba(31, 111, 255, 0.13), transparent 60%),
     radial-gradient(560px 360px at 0% 12%, rgba(31, 111, 255, 0.09), transparent 62%),
-    linear-gradient(180deg, #040914 0%, var(--bg) 42%, #040913 100%);
+    linear-gradient(180deg, var(--bg-deep) 0%, var(--bg) 42%, var(--bg-deep) 100%);
 }
 
 img { max-width: 100%; display: block; }
 a { color: color-mix(in srgb, var(--primary) 88%, white); }
 a:hover { color: var(--text); }
+
+:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--primary-strong) 72%, white);
+  outline-offset: 4px;
+}
+
+.skip-link {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 100;
+  transform: translateY(calc(-100% - 1.5rem));
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--text);
+  padding: .7rem 1rem;
+  text-decoration: none;
+  font-weight: 800;
+  box-shadow: var(--shadow);
+  transition: transform .18s ease;
+}
+
+.skip-link:focus-visible {
+  transform: translateY(0);
+}
 
 .shell,
 .page-shell {
@@ -124,11 +152,15 @@ nav a {
   letter-spacing: .08em;
   font-size: .78rem;
   font-weight: 700;
+  border-radius: 999px;
+  padding: .35rem .45rem;
+  transition: color .2s ease, background-color .2s ease;
 }
 
 nav a:hover,
 nav a:focus-visible {
   color: var(--text);
+  background: var(--primary-soft);
 }
 
 .menu-toggle {
@@ -141,6 +173,14 @@ nav a:focus-visible {
   padding: .7rem;
   color: var(--text);
   cursor: pointer;
+  transition: border-color .2s ease, background-color .2s ease, transform .2s ease;
+}
+
+.menu-toggle:hover,
+.theme-toggle:hover,
+.lang-switch:hover {
+  border-color: color-mix(in srgb, var(--primary) 42%, var(--border));
+  background: color-mix(in srgb, var(--primary-soft) 52%, var(--surface));
 }
 
 .menu-toggle span {
@@ -325,6 +365,10 @@ nav a:focus-visible {
 .hero-actions { margin-top: 1.45rem; }
 
 .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.9rem;
   text-decoration: none;
   border: 1px solid var(--border);
   border-radius: 12px;
@@ -335,7 +379,8 @@ nav a:focus-visible {
   font-weight: 700;
 }
 
-.btn:hover {
+.btn:hover,
+.btn:focus-visible {
   transform: translateY(-2px);
   box-shadow: 0 12px 24px rgba(20, 76, 183, 0.22);
   border-color: color-mix(in srgb, var(--primary) 36%, var(--border));
@@ -345,6 +390,17 @@ nav a:focus-visible {
   border-color: transparent;
   background: linear-gradient(135deg, var(--primary), var(--primary-strong));
   color: white;
+  padding-inline: 1.25rem;
+  box-shadow: 0 14px 30px rgba(20, 76, 183, 0.3);
+}
+
+.btn.secondary {
+  border-color: color-mix(in srgb, var(--primary) 35%, var(--border));
+  background: color-mix(in srgb, var(--primary-soft) 64%, var(--surface));
+}
+
+.btn.tertiary {
+  color: color-mix(in srgb, var(--text) 82%, var(--muted));
 }
 
 .hero-visual {
@@ -733,5 +789,8 @@ nav a:focus-visible {
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .btn { transition: none; }
+  .btn,
+  .skip-link,
+  .menu-toggle,
+  nav a { transition: none; }
 }
