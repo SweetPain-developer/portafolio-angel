@@ -12,7 +12,18 @@
   const refreshThemeIcon = () => {
     if (!toggleBtn) return;
     const isLight = root.dataset.theme === 'light';
-    toggleBtn.textContent = isLight ? '🌞' : '🌙';
+    const isEnglish = document.documentElement.lang === 'en';
+    const icon = toggleBtn.querySelector('.theme-toggle-icon');
+    const label = toggleBtn.querySelector('.theme-toggle-label');
+
+    if (icon) icon.textContent = isLight ? '☾' : '◐';
+    if (label) label.textContent = isLight ? (isEnglish ? 'Dark' : 'Oscuro') : (isEnglish ? 'Light' : 'Claro');
+    toggleBtn.setAttribute(
+      'aria-label',
+      isLight
+        ? (isEnglish ? 'Switch to dark mode' : 'Cambiar a modo oscuro')
+        : (isEnglish ? 'Switch to light mode' : 'Cambiar a modo claro')
+    );
   };
 
   refreshThemeIcon();
