@@ -3,6 +3,14 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import ThemeAndNavScript from '../../components/ThemeAndNavScript.astro';
 import profilePhoto from '../../img/Angel-Lillo-caricatura.jpeg';
 import { profileEn, contactsEn, highlightsEn, projectsEn, techEn, focusEn } from '../../data/portfolio-en';
+
+const techMark = (item: string) => item
+  .split(/[\s./+-]+/)
+  .filter(Boolean)
+  .slice(0, 2)
+  .map((part) => part[0])
+  .join('')
+  .toUpperCase();
 ---
 
 <BaseLayout
@@ -123,16 +131,16 @@ import { profileEn, contactsEn, highlightsEn, projectsEn, techEn, focusEn } from
         <div class="content-subsection">
           <span class="section-kicker">Technologies</span>
           <div class="tech-groups">
-            <div>
+            <div class="tech-cluster tech-cluster-core">
               <h3>Core</h3>
               <div class="chips">
-                {techEn.core.map((item) => <span class="chip">{item}</span>)}
+                {techEn.core.map((item) => <span class="chip tech-chip" data-tech-mark={techMark(item)}>{item}</span>)}
               </div>
             </div>
-            <div>
+            <div class="tech-cluster tech-cluster-complementary">
               <h3>Complementary</h3>
               <div class="chips">
-                {techEn.complementary.map((item) => <span class="chip">{item}</span>)}
+                {techEn.complementary.map((item) => <span class="chip tech-chip" data-tech-mark={techMark(item)}>{item}</span>)}
               </div>
             </div>
           </div>
@@ -165,8 +173,8 @@ import { profileEn, contactsEn, highlightsEn, projectsEn, techEn, focusEn } from
       </div>
 
       <div class="project-grid">
-        {projectsEn.map((project) => (
-          <article class="project-card frame-panel">
+        {projectsEn.map((project, index) => (
+          <article class="project-card frame-panel timeline-card" data-step={`0${index + 1}`}>
             <div class="project-header">
               <div>
                 <h3>{project.name}</h3>
@@ -193,7 +201,7 @@ import { profileEn, contactsEn, highlightsEn, projectsEn, techEn, focusEn } from
             <div class="project-section">
               <h4>Relevant stack</h4>
               <div class="chips">
-                {project.stack.map((item) => <span class="chip">{item}</span>)}
+                {project.stack.map((item) => <span class="chip tech-chip stack-chip" data-tech-mark={techMark(item)}>{item}</span>)}
               </div>
             </div>
 
@@ -237,7 +245,7 @@ import { profileEn, contactsEn, highlightsEn, projectsEn, techEn, focusEn } from
         <div>
           <span class="section-kicker">Let's talk</span>
           <h2>Available channels to connect or coordinate</h2>
-          <div class="contact-list">
+          <div class="contact-list contact-panel-links">
             <a href={contactsEn.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>
             <a href={contactsEn.github} target="_blank" rel="noopener noreferrer">GitHub</a>
             <a href={contactsEn.whatsapp} target="_blank" rel="noopener noreferrer">WhatsApp</a>
