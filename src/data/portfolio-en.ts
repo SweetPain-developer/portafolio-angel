@@ -1,9 +1,20 @@
 export const profileEn = {
   name: 'Ángel Lillo',
-  role: 'Backend Engineer · Node.js · AWS Serverless · PRD Integrations',
+  role: 'Backend Engineer · Serverless · APIs · Integrations',
+  intro:
+    'This portfolio brings together my professional experience, technical projects, and way of working as a Backend Engineer, focused on APIs, integrations, serverless, and data flows, complemented by frontend and mobile experience when the project requires it.',
+  value:
+    'I design and develop backend solutions focused on integration, operations, and maintainability, especially in AWS serverless environments.',
+  availability: 'Chile · Remote work',
   summary:
     'Computer Engineer specialized in backend development with Node.js and AWS serverless architecture for high-criticality production projects. I contribute across technical design, implementation, production support, and enterprise integrations with systems such as SAP and AS400. I complement this core experience with Flutter, AWS data components, and practical AI usage applied to software development.',
 };
+
+export const orientationEn = [
+  'Backend and APIs',
+  'AWS/serverless/integrations',
+  'Data/operations/reliability',
+];
 
 export const contactsEn = {
   linkedin: 'https://cl.linkedin.com/in/angel-lillo-003833369',

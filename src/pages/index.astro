@@ -2,7 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ThemeAndNavScript from '../components/ThemeAndNavScript.astro';
 import profilePhoto from '../img/Angel-Lillo-caricatura.jpeg';
-import { profile, contacts, highlights, projects, tech, focus } from '../data/portfolio';
+import { profile, contacts, highlights, orientation, projects, tech, focus } from '../data/portfolio';
 
 const techMark = (item: string) => item
   .split(/[\s./+-]+/)
@@ -51,7 +51,10 @@ const techMark = (item: string) => item
         <a href="#experiencia">Experiencia</a>
         <a href="#stack">Stack</a>
         <a href="#contacto">Contacto</a>
-        <a href="/en/" class="lang-switch" aria-label="Switch to English">EN</a>
+        <a href="/en/" class="lang-switch" aria-label="Cambiar idioma a inglés">
+          <span class="lang-switch-icon" aria-hidden="true">🌐</span>
+          <span class="lang-switch-label">English</span>
+        </a>
         <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Cambiar a modo claro">
           <span class="theme-toggle-icon" aria-hidden="true">◐</span>
           <span class="theme-toggle-label">Claro</span>
@@ -77,12 +80,12 @@ const techMark = (item: string) => item
           <span class="accent">{profile.name.split(' ').slice(1).join(' ')}</span>
         </h1>
         <p class="hero-role">{profile.role}</p>
-        <p class="hero-summary">{profile.summary}</p>
+        <p class="hero-intro">{profile.intro}</p>
+        <p class="hero-summary">{profile.value}</p>
+        <p class="hero-availability">{profile.availability}</p>
 
-        <div class="hero-metrics" aria-label="Áreas principales">
-          <span>Sistemas críticos</span>
-          <span>Arquitectura serverless</span>
-          <span>Cloud &amp; Data</span>
+        <div class="hero-orientation" aria-label="Orientación del portfolio">
+          {orientation.map((item) => <span>{item}</span>)}
         </div>
 
         <div class="actions hero-actions">
@@ -261,6 +264,7 @@ const techMark = (item: string) => item
           <span>const developer = {'{'}</span>
           <span>name: '{profile.name}',</span>
           <span>focus: '{profile.role}',</span>
+          <span>location: '{profile.availability}',</span>
           <span>approach: 'Responsable de diseño, implementación y operación'</span>
           <span>{'}'};</span>
         </div>

@@ -9,6 +9,9 @@
   --primary: #1f6fff;
   --primary-strong: #3e8cff;
   --primary-soft: rgba(31, 111, 255, 0.18);
+  --accent-2: #2dd4bf;
+  --accent-2-soft: rgba(45, 212, 191, 0.13);
+  --accent-2-glow: rgba(45, 212, 191, 0.18);
   --border: rgba(103, 136, 201, 0.28);
   --line: rgba(71, 99, 160, 0.34);
   --shadow: 0 24px 60px rgba(1, 8, 22, 0.45);
@@ -32,6 +35,9 @@
   --primary: #1b63e7;
   --primary-strong: #0f55d6;
   --primary-soft: rgba(27, 99, 231, 0.10);
+  --accent-2: #0f9f91;
+  --accent-2-soft: rgba(15, 159, 145, 0.09);
+  --accent-2-glow: rgba(15, 159, 145, 0.12);
   --border: rgba(65, 99, 168, 0.24);
   --line: rgba(65, 99, 168, 0.16);
   --shadow: 0 18px 40px rgba(62, 89, 145, 0.11);
@@ -52,6 +58,7 @@ body {
   position: relative;
   background:
     radial-gradient(720px 420px at 73% 13%, var(--glow), transparent 64%),
+    radial-gradient(520px 340px at 18% 4%, var(--accent-2-glow), transparent 68%),
     radial-gradient(900px 500px at 100% 0%, rgba(31, 111, 255, 0.13), transparent 60%),
     radial-gradient(560px 360px at 0% 12%, rgba(31, 111, 255, 0.09), transparent 62%),
     linear-gradient(180deg, var(--bg-deep) 0%, var(--bg) 42%, var(--bg-deep) 100%);
@@ -266,6 +273,23 @@ nav a:focus-visible {
   min-width: 6.1rem;
 }
 
+.lang-switch {
+  min-width: 6.7rem;
+  text-decoration: none;
+}
+
+.lang-switch-icon {
+  font-size: .95rem;
+  line-height: 1;
+}
+
+.lang-switch-label {
+  font-size: .78rem;
+  font-weight: 800;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+
 .theme-toggle-icon {
   width: 1.35rem;
   height: 1.35rem;
@@ -345,6 +369,7 @@ nav a:focus-visible {
 .hero-panel::before {
   background:
     radial-gradient(520px 320px at 76% 26%, rgba(31, 111, 255, .24), transparent 70%),
+    radial-gradient(320px 200px at 18% 12%, var(--accent-2-soft), transparent 74%),
     radial-gradient(260px 180px at 85% 68%, rgba(62, 140, 255, .16), transparent 76%),
     linear-gradient(130deg, rgba(31, 111, 255, 0.08), transparent 30%),
     linear-gradient(0deg, rgba(255,255,255,0.02), transparent 40%);
@@ -430,7 +455,7 @@ nav a:focus-visible {
 
 .hero-title .accent {
   color: transparent;
-  background: linear-gradient(100deg, var(--primary-strong), color-mix(in srgb, var(--primary) 55%, white), var(--primary-strong));
+  background: linear-gradient(100deg, var(--primary-strong), color-mix(in srgb, var(--accent-2) 34%, white), var(--primary-strong));
   -webkit-background-clip: text;
   background-clip: text;
   text-shadow: 0 0 30px rgba(31, 111, 255, 0.14);
@@ -446,6 +471,7 @@ nav a:focus-visible {
 }
 
 .hero-summary,
+.hero-intro,
 .content-card p,
 .project-context,
 .project-section li,
@@ -461,7 +487,46 @@ nav a:focus-visible {
   font-size: 1.03rem;
 }
 
-.hero-metrics,
+.hero-intro {
+  max-width: 43rem;
+  margin: 1rem 0 0;
+  font-size: 1rem;
+}
+
+.hero-summary {
+  margin: .7rem 0 0;
+  color: color-mix(in srgb, var(--text) 90%, var(--muted));
+  font-weight: 650;
+}
+
+.hero-availability {
+  width: fit-content;
+  margin: 1rem 0 0;
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  border: 1px solid color-mix(in srgb, var(--accent-2) 36%, var(--border));
+  border-radius: 999px;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.05), transparent),
+    color-mix(in srgb, var(--accent-2-soft) 72%, var(--surface-2));
+  color: color-mix(in srgb, var(--accent-2) 70%, white);
+  padding: .36rem .78rem;
+  font-size: .84rem;
+  font-weight: 800;
+  letter-spacing: .03em;
+}
+
+.hero-availability::before {
+  content: '';
+  width: .45rem;
+  height: .45rem;
+  border-radius: 999px;
+  background: var(--accent-2);
+  box-shadow: 0 0 16px var(--accent-2-glow);
+}
+
+.hero-orientation,
 .actions,
 .chips,
 .contact-list {
@@ -470,9 +535,9 @@ nav a:focus-visible {
   gap: .65rem;
 }
 
-.hero-metrics { margin-top: 1rem; }
+.hero-orientation { margin-top: 1rem; }
 
-.hero-metrics span,
+.hero-orientation span,
 .chip {
   display: inline-flex;
   align-items: center;
@@ -490,6 +555,20 @@ nav a:focus-visible {
   box-shadow: 0 8px 20px rgba(1, 8, 22, 0.10);
 }
 
+.hero-orientation span {
+  border-color: color-mix(in srgb, var(--accent-2) 24%, var(--border));
+}
+
+.hero-orientation span:nth-child(2) {
+  border-color: color-mix(in srgb, var(--primary) 34%, var(--border));
+}
+
+.hero-orientation span:nth-child(3) {
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.04), transparent),
+    color-mix(in srgb, var(--accent-2-soft) 48%, var(--surface-2));
+}
+
 .chip {
   position: relative;
   transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease, background .18s ease, color .18s ease;
@@ -497,12 +576,12 @@ nav a:focus-visible {
 
 .chip:hover {
   transform: translateY(-2px);
-  border-color: color-mix(in srgb, var(--primary) 44%, var(--border));
+  border-color: color-mix(in srgb, var(--accent-2) 36%, var(--primary));
   background:
     linear-gradient(180deg, rgba(255,255,255,.06), transparent),
     color-mix(in srgb, var(--primary-soft) 62%, var(--surface-2));
   color: var(--text);
-  box-shadow: 0 14px 30px rgba(20, 76, 183, 0.16), 0 0 22px rgba(31, 111, 255, 0.08);
+  box-shadow: 0 14px 30px rgba(20, 76, 183, 0.16), 0 0 22px var(--accent-2-glow);
 }
 
 .hero-actions { margin-top: 1.45rem; }
@@ -603,7 +682,8 @@ nav a:focus-visible {
     0 34px 80px rgba(0, 0, 0, 0.38),
     0 0 0 10px color-mix(in srgb, var(--surface-2) 36%, transparent),
     0 0 0 18px color-mix(in srgb, var(--primary) 10%, transparent),
-    0 0 70px rgba(31, 111, 255, 0.18);
+    0 0 70px rgba(31, 111, 255, 0.18),
+    0 0 36px var(--accent-2-glow);
 }
 
 .hero-code-card,
@@ -927,8 +1007,8 @@ nav a:focus-visible {
   display: inline-grid;
   place-items: center;
   border-radius: 8px;
-  background: color-mix(in srgb, var(--primary-soft) 72%, var(--surface));
-  color: color-mix(in srgb, var(--primary-strong) 76%, white);
+  background: color-mix(in srgb, var(--accent-2-soft) 74%, var(--surface));
+  color: color-mix(in srgb, var(--accent-2) 72%, white);
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
   font-weight: 900;
 }
@@ -954,7 +1034,7 @@ nav a:focus-visible {
   inset: 1px;
   border-radius: inherit;
   background:
-    radial-gradient(420px 180px at 84% 14%, color-mix(in srgb, var(--primary-soft) 82%, transparent), transparent 72%),
+    radial-gradient(420px 180px at 84% 14%, color-mix(in srgb, var(--accent-2-soft) 74%, transparent), transparent 72%),
     linear-gradient(90deg, transparent, rgba(255,255,255,.055), transparent);
   pointer-events: none;
 }
@@ -971,6 +1051,7 @@ nav a:focus-visible {
 :root[data-theme='light'] body {
   background:
     radial-gradient(720px 420px at 73% 13%, rgba(27, 99, 231, 0.09), transparent 66%),
+    radial-gradient(520px 340px at 18% 4%, rgba(15, 159, 145, 0.07), transparent 70%),
     radial-gradient(860px 480px at 100% 0%, rgba(112, 145, 205, 0.11), transparent 62%),
     radial-gradient(520px 340px at 0% 12%, rgba(27, 99, 231, 0.055), transparent 64%),
     linear-gradient(180deg, #e8effb 0%, var(--bg) 42%, #e9f0fb 100%);
@@ -1013,6 +1094,7 @@ nav a:focus-visible {
 :root[data-theme='light'] .hero-panel::before {
   background:
     radial-gradient(520px 320px at 76% 26%, rgba(27, 99, 231, .10), transparent 72%),
+    radial-gradient(320px 200px at 18% 12%, rgba(15, 159, 145, .07), transparent 76%),
     radial-gradient(260px 180px at 85% 68%, rgba(62, 140, 255, .07), transparent 78%),
     linear-gradient(130deg, rgba(27, 99, 231, 0.04), transparent 32%),
     linear-gradient(0deg, rgba(255,255,255,0.30), transparent 42%);
@@ -1217,13 +1299,13 @@ nav a:focus-visible {
     font-size: .98rem;
   }
 
-  .hero-metrics span,
+  .hero-orientation span,
   .chip {
     padding: .34rem .68rem;
     font-size: .8rem;
   }
 
-  .hero-metrics,
+  .hero-orientation,
   .hero-actions {
     gap: .55rem;
   }
@@ -1265,7 +1347,8 @@ nav a:focus-visible {
       0 22px 52px rgba(0, 0, 0, 0.30),
       0 0 0 8px color-mix(in srgb, var(--surface-2) 34%, transparent),
       0 0 0 14px color-mix(in srgb, var(--primary) 8%, transparent),
-      0 0 46px rgba(31, 111, 255, 0.14);
+      0 0 46px rgba(31, 111, 255, 0.14),
+      0 0 28px var(--accent-2-glow);
   }
 
   .project-grid,
@@ -1365,13 +1448,13 @@ nav a:focus-visible {
     margin-bottom: .2rem;
   }
 
-  .hero-metrics,
+  .hero-orientation,
   .actions,
   .chips {
     gap: .48rem;
   }
 
-  .hero-metrics span {
+  .hero-orientation span {
     flex: 1 1 9rem;
     justify-content: center;
   }
